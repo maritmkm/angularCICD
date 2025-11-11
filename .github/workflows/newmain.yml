@@ -33,4 +33,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages          # GitHub Pages branch
-          folder: dist/my-app       # Angular build output folder
+          folder: dist/      # Angular build output folder
