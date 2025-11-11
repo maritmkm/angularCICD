@@ -3,10 +3,10 @@ name: Build and Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger when pushing to main branch
+      - main  # Trigger on every push to main branch
 
 permissions:
-  contents: write   # ✅ Needed to allow pushing to gh-pages
+  contents: write   # ✅ Needed for the bot to push to gh-pages
 
 jobs:
   build-and-deploy:
@@ -21,19 +21,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # Adjust if your project uses another version
+          node-version: 18  # Match your Angular version setup
 
       # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 4️⃣ Build Angular app
+      # 4️⃣ Build the Angular app
       - name: Build Angular app
-        run: npm run build -- --configuration production"
+        run: npm run build -- --configuration production --base-href "/${{ github.event.repository.name }}/"
 
       # 5️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages          # The branch to deploy to
-          folder: dist/angularCICD  # Replace with your actual dist folder name
+          branch: gh-pages          # The GitHub Pages branch
+          folder: dist/angularCICD  # ✅ Your actual Angular build output folder
