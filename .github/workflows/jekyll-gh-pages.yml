@@ -31,7 +31,7 @@ jobs:
         run: npm install
 
       - name: Build Angular App
-        run: npm run build -- --configuration production --base-href "/angularCICD/"
+        run: npm run build -- --configuration production --base-href "/${{ github.event.repository.name }}/"
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
