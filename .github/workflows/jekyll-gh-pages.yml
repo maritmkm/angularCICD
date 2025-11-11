@@ -30,8 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Angular app
-        run: npm run build
+      - name: Build Angular App
+        run: npm run build -- --configuration production --base-href "/angularCICD/"
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
