@@ -3,14 +3,17 @@ name: Build and Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main  # Runs every time you push to main
+      - main  # Trigger when pushing to main branch
+
+permissions:
+  contents: write   # ✅ Needed to allow pushing to gh-pages
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the code
+      # 1️⃣ Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -18,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # or the version in your project
+          node-version: 18  # Adjust if your project uses another version
 
       # 3️⃣ Install dependencies
       - name: Install dependencies
@@ -32,5 +35,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages          # GitHub Pages branch
-          folder: dist/      # Angular build output folder
+          branch: gh-pages          # The branch to deploy to
+          folder: dist/angularCICD  # Replace with your actual dist folder name
