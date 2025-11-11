@@ -36,7 +36,7 @@ jobs:
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/angularCICD  # 👈 change this to match your actual output folder
+          path: dist/my-app # 👈 change this to match your actual output folder
 
   deploy:
     environment:
