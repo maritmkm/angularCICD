@@ -6,7 +6,7 @@ RUN npm ci
 COPY . .
 RUN npm run build -- --configuration production
 
-# Stage 2: Serve app with NGINX
+# Stage 2: Serve Angular app with NGINX
 FROM nginx:alpine
 COPY --from=builder /app/dist/angularCICD/browser /usr/share/nginx/html
 EXPOSE 80
